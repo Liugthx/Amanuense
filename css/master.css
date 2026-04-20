@@ -2,6 +2,16 @@
 .container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.output {
+    width: 50%;
+    white-space: pre-wrap;
+}
+
+.form-dynamic {
+    width: 50%;
 }
 
 .obrigatorio span {

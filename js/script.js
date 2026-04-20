@@ -13,6 +13,8 @@ fileInput.addEventListener("change", async function () {
         console.dir(file)
         console.log(Object.keys(file))
         modeloGlobal = texto;
+
+        document.querySelector(".output").innerHTML = texto;
     }
 });
 
@@ -31,7 +33,7 @@ function  readModel (modelo) {
         
         fim = modelo.indexOf("}}", inicio)    
         
-        let variavel = modelo.slice(comeco, fim);
+        let variavel = modelo.slice(comeco, fim).trim(); //trim usado para evitar captura de variaveis com espaço
 
         listaVars.push(variavel);
 
@@ -54,14 +56,22 @@ function renderFields (lista) { //função de renderizaçao de campos
     // criar novo elemento
     let area = document.querySelector(".form-dynamic");
     area.innerHTML = "";// limpa campos sempre quando novo modelo é inserido
+    let inputTarget;
+      
 
     for (let i = 0; i < lista.length ;i++) {
 
-        const INPUT = document.createElement("input");
+        const INPUT = document.createElement("input");         
         INPUT.name = lista[i];
         INPUT.id = lista[i];
         INPUT.placeholder = lista[i];
         INPUT.required = true;
+
+        INPUT.addEventListener("input", function() {
+            let informacao = INPUT.value;
+            console.log(informacao)
+            loadDocument();
+        })
 
         area.appendChild(INPUT);
        
@@ -84,7 +94,7 @@ function collectData () { // coleta dados que o usuario inseriu
     }
 
     let formDynamic = document.querySelector(".form-dynamic");
-    let listaInputs = formDynamic.childNodes;
+    let listaInputs = formDynamic.children;
     let listaDados = Object.keys(DADOS);
     let listaValores = [];
     console.log(formDynamic)
@@ -120,7 +130,9 @@ function generateDocument (modelo, dados) {
 
 function loadDocument () {
     let dados = collectData();
-    let document = generateDocument(modeloGlobal, dados);
+    let result = generateDocument(modeloGlobal, dados);
 
-    return console.log(document);
+    document.querySelector(".output").textContent = result;
+
+    return console.log(result);
 }
