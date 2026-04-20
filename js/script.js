@@ -43,5 +43,58 @@ function  readModel (modelo) {
 
     } 
 
+    renderFields(listaVars);
 
+}
+
+
+function renderFields (lista) { //função de renderizaçao de campos 
+
+    // criar novo elemento
+    let area = document.querySelector(".form-dynamic");
+    area.innerHTML = "";// limpa campos sempre quando novo modelo é inserido
+
+    for (let i = 0; i < lista.length ;i++) {
+
+        const INPUT = document.createElement("input");
+        INPUT.name = lista[i];
+        INPUT.id = lista[i];
+        INPUT.placeholder = lista[i];
+        INPUT.required = true;
+
+        area.appendChild(INPUT);
+       
+    }
+
+    
+
+}
+
+function collectData () { // coleta dados que o usuario inseriu
+
+    let DADOS = new Object();
+
+    DADOS = {
+        
+        nome: "",
+        cpf:"",
+        idade:""
+        
+    }
+
+    let formDynamic = document.querySelector(".form-dynamic");
+    let listaInputs = formDynamic.childNodes;
+    let listaDados = Object.keys(DADOS);
+    let listaValores = [];
+    console.log(formDynamic)
+
+    for (let i = 0; i < listaInputs.length; i++) {
+        console.log(listaInputs[i].name);
+        let valorDigitado = listaInputs[i].value;
+        listaValores.push(valorDigitado);
+        DADOS[listaDados[i]] = valorDigitado;
+    }
+
+    console.log(DADOS);
+    console.log(listaValores);
 }
