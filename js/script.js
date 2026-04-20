@@ -1,5 +1,5 @@
 
-
+let modeloGlobal = ""; //modelo inserido convertido em string
 const fileInput = document.querySelector("input[type=file]");
 const output = document.querySelector(".output");
 
@@ -12,6 +12,7 @@ fileInput.addEventListener("change", async function () {
 
         console.dir(file)
         console.log(Object.keys(file))
+        modeloGlobal = texto;
     }
 });
 
@@ -78,7 +79,7 @@ function collectData () { // coleta dados que o usuario inseriu
         
         nome: "",
         cpf:"",
-        idade:""
+        email:""
         
     }
 
@@ -97,4 +98,29 @@ function collectData () { // coleta dados que o usuario inseriu
 
     console.log(DADOS);
     console.log(listaValores);
+
+    return DADOS;
+}
+
+function generateDocument (modelo, dados) {
+    let resultado = modelo;
+    let chaves = Object.keys(dados);
+
+    for (let i = 0; i < chaves.length ;i++) {
+        let chave = chaves[i];
+        let placeholder = "{{"+chave+"}}";
+        let valor = dados[chave]
+
+        resultado = resultado.replaceAll(placeholder, valor)
+
+    }
+    return resultado
+
+}
+
+function loadDocument () {
+    let dados = collectData();
+    let document = generateDocument(modeloGlobal, dados);
+
+    return console.log(document);
 }
