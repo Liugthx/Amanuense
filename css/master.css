@@ -1,19 +1,175 @@
+/* Definição de Variáveis de Cores Modernas */
+:root {
+    --bg-principal: #f8fafc;
+    --bg-card: #ffffff;
+    --cor-texto: #1e293b;
+    --cor-subtexto: #64748b;
+    --cor-primaria: #2563eb;
+    --cor-primaria-hover: #1d4ed8;
+    --cor-borda: #cbd5e1;
+    --sombra-leve: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+    --sombra-documento: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-principal);
+    color: var(--cor-texto);
+    line-height: 1.6;
+    padding: 2rem;
+}
+
+/* Contentor Principal em Grid (2 Colunas) */
 .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* Responsividade para ecrãs pequenos (Telemóveis/Tablets) */
+@media (max-width: 968px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    body {
+        padding: 1rem;
+    }
+}
+
+/* Cabeçalho do Projeto */
+header {
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--cor-borda);
+    padding-bottom: 1rem;
+}
+
+header h1 {
+    font-size: 2.25rem;
+    color: var(--cor-primaria);
+    font-weight: 700;
+}
+
+header p {
+    color: var(--cor-subtexto);
+}
+
+/* Área de Upload do Ficheiro */
+.upload-section {
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: var(--sombra-leve);
+    margin-bottom: 2rem;
+    border: 2px dashed var(--cor-borda);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Estilização do Formulário Dinâmico */
+.form-dynamic {
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--sombra-leve);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Inputs lado a lado */
+    gap: 1.25rem;
+    align-content: start;
+}
+
+/* Elementos do Formulário */
+.form-dynamic input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--cor-borda);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: all 0.2s ease-in-out;
+    background-color: #f8fafc;
+}
+
+.form-dynamic input:focus {
+    outline: none;
+    border-color: var(--cor-primaria);
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Coluna da Direita: Visualizador do Documento */
+.preview-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.preview-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--cor-subtexto);
+}
+
+/* Estilo que simula uma folha de papel A4 */
+.output {
+    background: white;
+    padding: 3rem;
+    border-radius: 8px;
+    box-shadow: var(--sombra-documento);
+    min-height: 600px;
+    white-space: pre-wrap;
+    /* Mantém as quebras de linha do modelo */
+    font-family: 'Times New Roman', Times, serif;
+    /* Fonte clássica de contrato */
+    font-size: 1.1rem;
+    color: #111111;
+    border: 1px solid #e2e8f0;
+    line-height: 1.8;
+}
+
+
+/* Alinha o título da pré-visualização e o botão lado a lado */
+.preview-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 1rem;
 }
 
-.output {
-    width: 50%;
-    white-space: pre-wrap;
+/* Estilo do Botão Principal */
+.btn-primary {
+    background-color: #10b981;
+    /* Verde moderno */
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-.form-dynamic {
-    width: 50%;
+.btn-primary:hover:not(:disabled) {
+    background-color: #059669;
+    transform: translateY(-1px);
 }
 
-.obrigatorio span {
-    color: red;
+/* Estado desativado (quando não há modelo carregado ainda) */
+.btn-primary:disabled {
+    background-color: #cbd5e1;
+    color: #94a3b8;
+    cursor: not-allowed;
+    transform: none;
 }

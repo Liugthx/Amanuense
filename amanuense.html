@@ -1,49 +1,46 @@
-<!doctype html>
-<html lang="pt-br">
-  <head>
-    <link rel="stylesheet" href="./css/master.css" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Amanuense</title>
-  </head>
-  <body>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Amanuense - Gerador de Contratos</title>
+    <link rel="stylesheet" href="css/master.css">
+</head>
+<body>
+
     <header>
-      <h1>Gerador de Contratos Dinamico</h1>
+        <h1>Amanuense</h1>
+        <p>Insira o modelo de contrato e preencha os dados abaixo.</p>
     </header>
 
-    <section>
-      <h2>Insira um modelo (formato txt)</h2>
-      <div class="form-group">
-        <input
-          type="file"
-          name="modelo_inserido"
-          id="modelo_inserido"
-          accept="text/txt"
-        />
-      </div>
-    </section>
+    <div class="upload-section">
+        <label for="file-upload"><b>Selecione o modelo (.txt):</b></label>
+        <input type="file" id="file-upload">
+    </div>
 
     <div class="container">
-
-      <section>
-        <h3>Visualização de Texto </h3>
-        <div class="output"></div>
-      </section>
-
-      <section>
-        <h3>Campos Detectados:</h3>
-        <div class="form-dynamic">
-
-        </div>
-
+        
         <div>
-            <button onclick="loadDocument()" >Gerar Contrato</button>
+            <h3 style="margin-bottom: 1rem; color: var(--cor-subtexto);">Dados do Contrato</h3>
+            <div class="form-dynamic">
+                </div>
         </div>
-      </section>
+
+        <div class="preview-container">
+            <div class="preview-header">
+                <h3 class="preview-title">Pré-visualização em Tempo Real</h3>
+                <button id="btn-exportar" class="btn-primary" disabled>Exportar para Word (.docx)</button>
+            </div>
+            
+            <div class="output">
+                O texto do contrato aparecerá aqui assim que carregar o ficheiro modelo...
+            </div>
+        </div>
 
     </div>
 
-  </body>
-
-  <script src="./js/script.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    
+    <script src="js/script.js"></script>
+</body>
 </html>
